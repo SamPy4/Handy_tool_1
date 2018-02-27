@@ -29,13 +29,20 @@ def fetch(word):
         return False
 
     synonyms = []
-    for i in range(1, 11):
+
+
+    for j in range(1, 100):
         try:
-            synonymsX = '/html/body/div[2]/div[2]/div[1]/div/div[3]/div[2]/div[2]/div[3]/div/ul[1]/li[{}]/a/span/text()'.format(i)
-                        # /html/body/div[2]/div[2]/div[1]/div/div[3]/div[2]/div[2]/div[3]/div/ul[1]/li[10]/a
-            synonyms.append(tree.xpath(synonymsX)[0].strip())
-        except IndexError:
+            for i in range(1, 100):
+                try:
+                    synonymsX = '/html/body/div[2]/div[2]/div[1]/div/div[3]/div[2]/div[2]/div[3]/div/ul[{}]/li[{}]/a/span/text()'.format(j, i)
+                                # /html/body/div[2]/div[2]/div[1]/div/div[3]/div[2]/div[2]/div[3]/div/ul[1]/li[10]/a
+                    synonyms.append(tree.xpath(synonymsX)[0].strip())
+                except IndexError:
+                    break
+        except:
             break
+            
     return wordType, desc, synonyms
 
 if __name__ == "__main__":
