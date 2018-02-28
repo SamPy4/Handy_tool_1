@@ -53,7 +53,7 @@ class widget:
                 self.descText.pack()
                 return self.descText
             else:
-                text = "{};\n    {}.\n\nSome Synonyms for the word {}:\n\n".format(info[0], info[1], wordToLook.get())
+                text = "{};\n    {}.\n\nSome synonyms for the word {}:\n\n".format(info[0], info[1], wordToLook.get().title())
 
                 for w in info[2]:
                     text += "{}\n".format(w)
