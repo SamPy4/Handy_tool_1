@@ -52,6 +52,13 @@ class widget:
                 self.descText = Label(self.root, text="Couldn't find anything about {}".format(wordToLook.get()))
                 self.descText.pack()
                 return self.descText
+            if info == None:
+                self.h = 75
+                self.root.geometry("{}x{}".format(self.w, self.h))
+                self.descText = Label(self.root, text="No internet connection...")
+                self.descText.pack()
+                return self.descText
+
             else:
                 text = "{};\n    {}.\n\nSome synonyms for the word {}:\n\n".format(info[0], info[1], wordToLook.get().title())
 
@@ -92,6 +99,8 @@ class widget:
                 if self.getWord(wordToLook.get()):
                     info[0], info[1], info[2] = self.getWord(wordToLook.get())
                     self.descText = show(info)
+                if self.getWord(wordToLook.get()) == None:
+                    self.descText = show(None)
                 else:
                     self.descText = show(False)
 

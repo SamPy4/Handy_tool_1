@@ -10,8 +10,8 @@ def fetch(word):
     try:
         page = requests.get(wordLink)
     except requests.exceptions.ConnectionError:
-        print("Fetcher couldn't fetch: No internet connection")
-        return
+        print("No internet connection")
+        return None
 
     tree = html.fromstring(page.content)
     wordTypeX  = '/html/body/div[2]/div[2]/div[1]/div/div[3]/div[2]/div[2]/div[2]/em/text()'
@@ -42,7 +42,7 @@ def fetch(word):
                     break
         except:
             break
-            
+
     return wordType, desc, synonyms
 
 if __name__ == "__main__":
