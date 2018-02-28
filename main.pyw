@@ -46,7 +46,7 @@ class widget:
             self.h = 75
 
             self.descText.destroy()
-            if not info:
+            if info == False:
                 self.h = 75
                 self.root.geometry("{}x{}".format(self.w, self.h))
                 self.descText = Label(self.root, text="Couldn't find anything about {}".format(wordToLook.get()))
@@ -59,7 +59,7 @@ class widget:
                 self.descText.pack()
                 return self.descText
 
-            else:
+            if info:
                 text = "{};\n    {}.\n\nSome synonyms for the word {}:\n\n".format(info[0], info[1], wordToLook.get().title())
 
                 for w in info[2]:
@@ -96,12 +96,14 @@ class widget:
                 self.root.destroy()
             if nappi == "Return":
                 info = ["Word type","Word description","List of synonyms for that word"]
-                if self.getWord(wordToLook.get()):
-                    info[0], info[1], info[2] = self.getWord(wordToLook.get())
+
+                wordInfo = self.getWord(wordToLook.get())
+                if wordInfo:
+                    info[0], info[1], info[2] = wordInfo
                     self.descText = show(info)
-                if self.getWord(wordToLook.get()) == None:
+                if wordInfo == None:
                     self.descText = show(None)
-                else:
+                if wordInfo == False:
                     self.descText = show(False)
 
         self.root.bind("<Key>", painettu)
