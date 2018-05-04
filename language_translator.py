@@ -13,7 +13,7 @@ class language_translator():
 
 
     def fetch_words(self, word):
-        """ Returs either list of words or None indicating that it didn't find translations """
+        """ Returns either list of words or None indicating that it didn't find translations """
         url = 'http://www.sanakirja.org/search.php?q={word}&l={l1}&l2={l2}'.format(word=word,
                                                                                    l1  =self.lang_1,
                                                                                    l2  =self.lang_2)
@@ -32,7 +32,8 @@ class language_translator():
         return fw
 
     def get_translation(self, word, l1, l2):
-        """ This will fetch the actual translation """
+        """ This will fetch the translation """
+        """ This function is called from outside """
         try:
             self.lang_1 = self.langs[l1]    # Updates the global var
             self.lang_2 = self.langs[l2]    # Updates the global var
