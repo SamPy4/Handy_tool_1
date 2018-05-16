@@ -17,6 +17,7 @@ class widget:
 
 
     def startWindow(self):
+        print("Window opened")
         self.w = 300
         self.h = 75
 
@@ -24,8 +25,9 @@ class widget:
         self.descText = Label(self.root, text="")
         self.root.lift()
         self.root.attributes("-topmost", True)
-        self.root.wm_attributes('-toolwindow', False)
-        self.root.overrideredirect(True)
+        self.root.wm_attributes('-topmost', False)
+        # self.root.overrideredirect(True)
+        # self.root.configure(background='white')
 
         emptyMenu = Menu(self.root)
         self.root.config(menu=emptyMenu)
@@ -35,10 +37,7 @@ class widget:
         self.root.grab_set()
         self.root.grab_release()
 
-        try:
-            self.x, self.y = win32gui.GetCursorPos()
-        except:
-            self.x, self.y = self.root.winfo_screenwidth(), self.root.winfo_screenheight()
+        self.x, self.y = self.root.winfo_screenwidth(), self.root.winfo_screenheight()
 
         self.root.geometry("{}x{}+{}+{}".format(self.w, self.h, int( int(self.x) - self.w/2 ), int( int(self.y) - self.h/8 )))
         def show(info):
@@ -90,6 +89,7 @@ class widget:
 
         def painettu(event):
             """ Ottaa painetun napin ja tekee sillä jotain """
+            print("Pressed")
             nappi = event.keysym
             # print(nappi)
             if nappi == "Escape":
